@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# adding attributes to user table
 class AddAttrsToAdminUsers < ActiveRecord::Migration[5.2]
   def change
     add_column :admin_users, :First_name, :string

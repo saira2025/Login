@@ -3,6 +3,7 @@
 # adminUsers table
 #
 class DeviseCreateAdminUsers < ActiveRecord::Migration[5.2]
+  # rubocop :disable Metrics/MethodLength
   def change
     create_table :admin_users do |t|
       ## Database authenticatable
@@ -42,4 +43,5 @@ class DeviseCreateAdminUsers < ActiveRecord::Migration[5.2]
     # add_index :admin_users, :confirmation_token,   unique: true
     # add_index :admin_users, :unlock_token,         unique: true
   end
+  # rubocop :enable Metrics/MethodLength
 end
