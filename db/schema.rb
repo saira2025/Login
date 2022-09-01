@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -12,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_220_831_110_648) do
+ActiveRecord::Schema.define(version: 20_220_901_094_932) do
   create_table 'admin_users', force: :cascade do |t|
     t.string 'email', default: '', null: false
     t.string 'encrypted_password', default: '', null: false
@@ -30,5 +28,12 @@ ActiveRecord::Schema.define(version: 20_220_831_110_648) do
     t.string 'last_name'
     t.index ['email'], name: 'index_admin_users_on_email', unique: true
     t.index ['reset_password_token'], name: 'index_admin_users_on_reset_password_token', unique: true
+  end
+
+  create_table 'posts', force: :cascade do |t|
+    t.string 'title'
+    t.string 'body'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
   end
 end

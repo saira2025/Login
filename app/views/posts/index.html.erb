@@ -1,0 +1,19 @@
+<h1>HOME PAGE</h1>
+<br>
+<%= link_to 'Login', new_admin_user_session_path %>
+<br> <br>
+<%= link_to 'SignUp', new_admin_user_registration_path %>
+<br> <br>
+<%= link_to 'Sign out', destroy_admin_user_session_path ,method: :delete%>
+
+<% @posts.each do |post| %>
+<h2> Post Number: <%= post.id%> </h2>
+<p> Title: <%= post.title %></p>
+<p> Body: <%= post.body %></p>
+<br>
+<%= link_to "Read", post_path(post) %>
+<%= link_to "Edit", edit_post_path(post) %>
+<%= link_to "Delete" , post_path(post), method: :delete , data: {Confirm:"Are You Sure?"}%>
+
+<hr>
+<% end %>
