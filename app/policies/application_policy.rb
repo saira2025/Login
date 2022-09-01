@@ -1,10 +1,12 @@
 # frozen_string_literal: true
 
+# Application Policy
+#
 class ApplicationPolicy
-  attr_reader :user, :record
+  attr_reader :admin_user, :record
 
-  def initialize(user, record)
-    @user = user
+  def initialize(admin_user, record)
+    @admin_user = admin_user
     @record = record
   end
 
@@ -25,7 +27,7 @@ class ApplicationPolicy
   end
 
   def update?
-    false
+    admin_user.present?
   end
 
   def edit?
@@ -36,18 +38,7 @@ class ApplicationPolicy
     false
   end
 
-  class Scope
-    def initialize(user, scope)
-      @user = user
-      @scope = scope
-    end
-
-    def resolve
-      raise NotImplementedError, "You must define #resolve in #{self.class}"
-    end
-
-    private
-
-    attr_reader :user, :scope
+  def resolve
+    raise NotImplementedError, "You must define #resolve in #{self.class}"
   end
 end

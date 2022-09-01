@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Registration Controller
 #
 class RegistrationController < ApplicationController

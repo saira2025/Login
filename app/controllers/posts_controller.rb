@@ -1,6 +1,10 @@
+# frozen_string_literal: true
+
 # Post Controller
 #
 class PostsController < ApplicationController
+  before_action :find_post, only: %i[show edit update destroy]
+
   def index
     @posts = Post.all
   end
@@ -16,6 +20,25 @@ class PostsController < ApplicationController
     else
       render 'new'
     end
+  end
+
+  def show; end
+
+  def edit; end
+
+  def update
+    authorize @post
+    if @post.update(post_params)
+      redirect_to @post
+    else
+      render 'edit'
+    end
+  end
+
+  def destroy
+    authorize @post
+    @post.destroy
+    redirect_to root_path
   end
 
   private
