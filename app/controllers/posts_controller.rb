@@ -15,6 +15,7 @@ class PostsController < ApplicationController
   end
 
   def create
+    # authorize @post
     @post = Post.new(post_params)
     if @post.save
       redirect_to @post
@@ -23,13 +24,16 @@ class PostsController < ApplicationController
     end
   end
 
-  def show; end
+  def show
+    authorize @post
+  end
 
   def edit
     authorize @post
   end
 
-  def update
+  def update 
+    authorize @post
     if @post.update(post_params)
       redirect_to @post
     else
@@ -50,6 +54,6 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:title, :body)
+    params.require(:post).permit(:title, :body, :admin_user_id)
   end
 end
