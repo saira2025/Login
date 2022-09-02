@@ -1,9 +1,13 @@
 <h1>HOME PAGE</h1>
 <br>
-<%= link_to 'Login', new_admin_user_session_path %>
-<br> <br>
-<%= link_to 'SignUp', new_admin_user_registration_path %>
-<br> <br>
-<%= link_to 'Sign out', destroy_admin_user_session_path ,method: :delete%>
+<% if admin_user_signed_in? %> 
+  <%= current_admin_user.email %>
+  <br> <br>
+  <%= link_to 'Sign out', destroy_admin_user_session_path ,method: :delete%>
+<% else %>
+  <%= link_to 'Login', new_admin_user_session_path %>
+  <br> <br>
+  <%= link_to 'SignUp', new_admin_user_registration_path %>
+<% end %>
 <br> <br>
 <%= link_to 'Posts', posts_path %>

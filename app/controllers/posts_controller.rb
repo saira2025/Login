@@ -11,10 +11,11 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
+    authorize @post
   end
 
   def create
-    @post = posts.new(post_params)
+    @post = Post.new(post_params)
     if @post.save
       redirect_to @post
     else
@@ -24,10 +25,11 @@ class PostsController < ApplicationController
 
   def show; end
 
-  def edit; end
+  def edit
+    authorize @post
+  end
 
   def update
-    authorize @post
     if @post.update(post_params)
       redirect_to @post
     else
